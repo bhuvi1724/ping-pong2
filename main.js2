@@ -1,0 +1,48 @@
+
+
+
+
+}
+function gotposes(results){
+	if(results.length>0){
+		console.log(results);
+
+	}
+}
+function modelLoaded() {
+	console.log("model is loaded");
+}
+function setup() {
+	canvas = createCanvas(650,400);
+	
+	video=createCapture(VIDEO);
+	video.size(600,300);
+	
+	posenet=ml5.poseNet(video,modelLoaded);
+	posenet.on('pose',gotposes);
+	
+	
+}
+
+function draw() {
+	game()
+	background("#D3D3D3");
+	if (nosex<300) {
+		mariox=mariox-1;
+		
+	}
+	if (nosex>300) {
+		mariox=mariox+1;
+		
+	}
+	if (nosey<150) {
+		marioy=marioy-1;
+		
+	}
+	if (nosey>150) {
+		marioy=marioy+1;
+		
+	}
+	image(img,mariox,marioy,40,70);
+	
+}
